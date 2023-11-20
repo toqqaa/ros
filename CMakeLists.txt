@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(chatter_pkg)
+project(topic_subscriber_pkg)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -11,7 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
-  geometry_msgs
+  turtlesim
 )
 
 ## System dependencies are found with CMake's conventions
@@ -71,7 +71,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   std_msgs
+#   std_msgs  # Or other packages containing msgs
 # )
 
 ################################################
@@ -105,8 +105,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES chatter_pkg
-#  CATKIN_DEPENDS roscpp rospy std_msgs
+#  LIBRARIES topic_subscriber_pkg
+#  CATKIN_DEPENDS roscpp rospy std_msg
 #  DEPENDS system_lib
 )
 
@@ -123,7 +123,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/chatter_pkg.cpp
+#   src/${PROJECT_NAME}/topic_subscriber_pkg.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -134,7 +134,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/chatter_pkg_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/topic_subscriber_pkg_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -198,15 +198,12 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_chatter_pkg.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_topic_subscriber_pkg.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-add_executable(int_pub_node src/intpub.cpp)
-target_link_libraries(int_pub_node ${catkin_LIBRARIES})
-
-add_executable(turtlesim src/turtlesim.cpp)
-target_link_libraries(turtlesim ${catkin_LIBRARIES})
+add_executable(pose_sub_node src/pose_topic_subscriber.cpp)
+target_link_libraries(pose_sub_node ${catkin_LIBRARIES})
